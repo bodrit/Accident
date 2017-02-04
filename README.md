@@ -3,9 +3,9 @@ This repo has been created accidentally
 
 # Engines
 
-[Phaser](www.phaser.io)
+[Phaser](http://www.phaser.io)
 
-[PixiJS](www.pixijs.com)
+[PixiJS](http://www.pixijs.com)
 
 # Misc
 [SimCity for MS-DOS (browser version)](http://js-dos.com/games/simcity.exe.html)
