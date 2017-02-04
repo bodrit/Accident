@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>SimCity</title>
+    <script type="text/javascript" src="js/phaser.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+
+var game = new Phaser.Game(1000, 1000, Phaser.AUTO, '', { preload: preload, create: create, update: update });
+
+function preload() {
+    //game.load.image('star', 'assets/star.png');
+    game.load.spritesheet('road', 'assets/road.png', 100, 100);
+}
+
+function create() {
+    game.add.sprite(500, 500, 'road', 35);
+    /*
+    var n = 0;
+    for (var y = 0; y < 1000; y += 100) {
+        for (var x = 0; x < 1000; x += 100) {
+            game.add.sprite(x, y, 'road', n);
+            ++n;
+        }
+    }
+    */
+}
+
+function update() {
+
+
+}
+
+</script>
+
+</body>
+</html>
