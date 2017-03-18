@@ -4,15 +4,13 @@
   <meta charset="utf-8">
   <title>Hello World</title>
 </head>
-  <script src="pixi.min.js"></script>
+  <script src="pixi.js"></script>
 <body>
   <script type="text/javascript">
-    var type = "WebGL"
-    if(!PIXI.utils.isWebGLSupported()){
-      type = "canvas"
-    }
-
-    PIXI.utils.sayHello(type)
+    var renderer = PIXI.autoDetectRenderer(256, 256);
+    document.body.appendChild(renderer.view);
+    var stage = new PIXI.Container();
+    renderer.render(stage);
   </script>
 </body>
 </html>
