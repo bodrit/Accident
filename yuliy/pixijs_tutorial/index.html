@@ -8,6 +8,7 @@
   <script src="pixi.js"></script>
 <body>
   <script type="text/javascript">
+    // renderer
     var renderer = PIXI.autoDetectRenderer(
         256, 256,
         {antialias: false, transparent: false, resolution: 1}
@@ -19,10 +20,25 @@
     renderer.resize(window.innerWidth, window.innerHeight);
     renderer.backgroundColor = 0x061639;
 
+    // stage
     var stage = new PIXI.Container();
-    renderer.render(stage);
 
-    console.log(renderer.view.width, renderer.view.height);
+    // textures
+    var texture = PIXI.utils.TextureCache["images/road.png"];
+
+    PIXI.loader
+        .add("images/road.png")
+        .load(setup);
+
+    function setup() {
+        var sprite = new PIXI.Sprite(
+            PIXI.loader.resources["images/road.png"].texture
+        );
+
+        stage.addChild(sprite);
+        renderer.render(stage);
+    }
+
   </script>
 </body>
 </html>
