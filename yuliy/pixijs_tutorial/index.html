@@ -14,7 +14,8 @@
         loader = PIXI.loader,
         resources = PIXI.loader.resources,
         Sprite = PIXI.Sprite,
-        TextureCache = PIXI.utils.TextureCache;
+        TextureCache = PIXI.utils.TextureCache,
+        Rectangle = PIXI.Rectangle;
 
     // renderer
     var renderer = autoDetectRenderer(
@@ -36,18 +37,33 @@
         .on("progress", loadProgressHandler)
         .add("roadImage", "images/road.png")
         .add("starImage", "images/star.png")
+        .add("miscImage", "images/misc.png")
         .load(setup);
 
     function setup() {
-        var sprite = new Sprite(
+        // road
+        var road = new Sprite(
             resources.roadImage.texture
         );
 
-        sprite.position.set(100, 100);
-        sprite.width = 250;
-        sprite.height = 250;
+        road.position.set(100, 100);
+        road.width = 250;
+        road.height = 250;
 
-        stage.addChild(sprite);
+        stage.addChild(road);
+
+        // block
+        var blockTexture = TextureCache["miscImage"];
+        //blockTexture.frame = new Rectangle(192, 128, 64, 64);
+        blockTexture.frame = new Rectangle(96, 64, 32, 32);
+
+        var block = new Sprite(blockTexture);
+
+        block.position.set(400, 100);
+
+        stage.addChild(block);
+
+        //
         renderer.render(stage);
         console.log('setup completed');
     }
