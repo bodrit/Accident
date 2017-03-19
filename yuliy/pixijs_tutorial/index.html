@@ -8,8 +8,16 @@
   <script src="pixi.js"></script>
 <body>
   <script type="text/javascript">
+    //Aliases
+    var Container = PIXI.Container,
+        autoDetectRenderer = PIXI.autoDetectRenderer,
+        loader = PIXI.loader,
+        resources = PIXI.loader.resources,
+        Sprite = PIXI.Sprite,
+        TextureCache = PIXI.utils.TextureCache;
+
     // renderer
-    var renderer = PIXI.autoDetectRenderer(
+    var renderer = autoDetectRenderer(
         256, 256,
         {antialias: false, transparent: false, resolution: 1}
     );
@@ -21,22 +29,32 @@
     renderer.backgroundColor = 0x061639;
 
     // stage
-    var stage = new PIXI.Container();
+    var stage = new Container();
 
     // textures
-    var texture = PIXI.utils.TextureCache["images/road.png"];
-
-    PIXI.loader
-        .add("images/road.png")
+    loader
+        .on("progress", loadProgressHandler)
+        .add("roadImage", "images/road.png")
+        .add("starImage", "images/star.png")
         .load(setup);
 
     function setup() {
-        var sprite = new PIXI.Sprite(
-            PIXI.loader.resources["images/road.png"].texture
+        var sprite = new Sprite(
+            resources.roadImage.texture
         );
+
+        sprite.position.set(100, 100);
+        sprite.width = 250;
+        sprite.height = 250;
 
         stage.addChild(sprite);
         renderer.render(stage);
+        console.log('setup completed');
+    }
+
+    function loadProgressHandler(loader, resource) {
+        console.log("loading image: " + resource.url);
+        console.log("progress: " + loader.progress + "%");
     }
 
   </script>
