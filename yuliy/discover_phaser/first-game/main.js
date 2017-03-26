@@ -4,6 +4,7 @@ var mainState = {
         game.load.image('wallV', 'assets/wallVertical.png');
         game.load.image('wallH', 'assets/wallHorizontal.png');
         game.load.image('coin', 'assets/coin.png');
+        game.load.image('enemy', 'assets/enemy.png');
     },
 
     create: function() {
@@ -33,6 +34,12 @@ var mainState = {
         this.scoreLabel = game.add.text(30, 30, 'score: 0',
             {font: '18px Monaco', fill: '#ffffff'});
         this.score = 0;
+
+        // enemies
+        this.enemies = game.add.group();
+        this.enemies.enableBody = true;
+        this.enemies.createMultiple(10, 'enemy');
+        game.time.events.loop(2200, this.addEnemy, this);
     },
 
     update: function() {
@@ -114,6 +121,21 @@ var mainState = {
 
         var newPosition = game.rnd.pick(coinPosition);
         this.coin.reset(newPosition.x, newPosition.y);
+    },
+
+    addEnemy: function() {
+        var enemy = this.enemies.getFirstDead();
+        if (!enemy) {
+            return;
+        }
+
+        enemy.anchor.setTo(0.5, 1);
+        enemy.reset(game.width/2, 0);
+        enemy.body.gravity.y = 500;
+        enemy.velocity.x = 100 * game.rnd.pick([-1, 1]);
+        enemy.body.bounce.x = 1;
+        enemy.checkWorldBounds = true;
+        enemy.outOfBoundsKill = true;
     }
 };
 
