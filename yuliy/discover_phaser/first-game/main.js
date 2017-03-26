@@ -8,19 +8,17 @@ var mainState = {
     },
 
     create: function() {
-        //
         game.stage.backgroundColor = '#3498db';
         game.physics.startSystem(Phaser.Physics.ARCADE);
         game.renderer.renderSession.roundPixels = true;
 
+        this.cursor = game.input.keyboard.createCursorKeys();
+
         // player
         this.player = game.add.sprite(game.width/2, game.height/2, 'player');
         this.player.anchor.setTo(0.5, 0.5);
-
         game.physics.arcade.enable(this.player);
         this.player.body.gravity.y = 500;
-
-        this.cursor = game.input.keyboard.createCursorKeys();
 
         // world
         this.createWorld();
@@ -31,8 +29,10 @@ var mainState = {
         this.coin.anchor.setTo(0.5, 0.5);
 
         // score
-        this.scoreLabel = game.add.text(30, 30, 'score: 0',
-            {font: '18px Monaco', fill: '#ffffff'});
+        this.scoreLabel = game.add.text(
+            30, 30, 'score: 0',
+            {font: '18px Monaco', fill: '#ffffff'}
+        );
         this.score = 0;
 
         // enemies
@@ -44,12 +44,7 @@ var mainState = {
 
     update: function() {
         game.physics.arcade.collide(this.player, this.walls);
-        this.movePlayer();
-
-        if (!this.player.inWorld) {
-            this.playerDie();
-        }
-
+        game.physics.arcade.collide(this.enemies, this.walls);
         game.physics.arcade.overlap(
             this.player,    // objectA
             this.coin,      // objectB
@@ -57,6 +52,19 @@ var mainState = {
             null,           // process
             this
         );
+        game.physics.arcade.overlap(
+            this.player,
+            this.enemies,
+            this.playerDie,
+            null,
+            this
+        );
+
+        this.movePlayer();
+
+        if (!this.player.inWorld) {
+            this.playerDie();
+        }
     },
 
     movePlayer: function() {
@@ -132,7 +140,7 @@ var mainState = {
         enemy.anchor.setTo(0.5, 1);
         enemy.reset(game.width/2, 0);
         enemy.body.gravity.y = 500;
-        enemy.velocity.x = 100 * game.rnd.pick([-1, 1]);
+        enemy.body.velocity.x = 100 * game.rnd.pick([-1, 1]);
         enemy.body.bounce.x = 1;
         enemy.checkWorldBounds = true;
         enemy.outOfBoundsKill = true;
