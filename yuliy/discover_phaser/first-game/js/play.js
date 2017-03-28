@@ -74,7 +74,6 @@ var playState = {
     movePlayer: function() {
         if (this.cursor.left.isDown) {
             this.player.body.velocity.x = -200;
-            console.log(this.player.animations);
             this.player.animations.play('left');
         } else if (this.cursor.right.isDown) {
             this.player.body.velocity.x = 200;
