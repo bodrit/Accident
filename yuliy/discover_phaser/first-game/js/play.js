@@ -32,6 +32,14 @@ var playState = {
         this.enemies.enableBody = true;
         this.enemies.createMultiple(10, 'enemy');
         game.time.events.loop(2200, this.addEnemy, this);
+
+        // sounds
+        this.jumpSound = game.add.audio('jump');
+        this.coinSound = game.add.audio('coin');
+        this.deadSound = game.add.audio('dead');
+        this.music = game.add.audio('music');
+        this.music.loop = true;
+        this.music.play();
     },
 
     update: function() {
@@ -97,6 +105,7 @@ var playState = {
     },
 
     playerDie: function() {
+        this.music.stop();
         game.state.start('menu');
     },
 
