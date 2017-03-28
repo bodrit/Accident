@@ -44,6 +44,14 @@ var playState = {
         // animations
         this.player.animations.add('right', [1, 2], 8, true);
         this.player.animations.add('left', [3, 4], 8, true);
+
+        //
+        this.emitter = game.add.emitter(0, 0, 15);
+        this.emitter.makeParticles('pixel');
+        this.emitter.setYSpeed(-150, 150);
+        this.emitter.setXSpeed(-150, 150);
+        this.emitter.setScale(2, 0, 2, 0, 800);
+        this.emitter.gravity = 0;
     },
 
     update: function() {
@@ -114,7 +122,17 @@ var playState = {
 
     playerDie: function() {
         this.music.stop();
+
+        this.player.kill();
         this.deadSound.play();
+        this.emitter.x = this.player.x;
+        this.emitter.y = this.player.y;
+        this.emitter.start(true, 800, null, 15);
+
+        game.time.events.add(1000, this.startMenu, this);
+    },
+
+    startMenu: function() {
         game.state.start('menu');
     },
 
