@@ -78,6 +78,7 @@ var playState = {
 
         if (this.cursor.up.isDown && this.player.body.touching.down) {
             this.player.body.velocity.y = -320;
+            this.jumpSound.play();
         }
     },
 
@@ -106,6 +107,7 @@ var playState = {
 
     playerDie: function() {
         this.music.stop();
+        this.deadSound.play();
         game.state.start('menu');
     },
 
@@ -113,6 +115,7 @@ var playState = {
         game.global.score += 5;
         this.scoreLabel.text = 'score: ' + game.global.score;
         this.updateCoinPosition();
+        this.coinSound.play();
     },
 
     updateCoinPosition: function() {
