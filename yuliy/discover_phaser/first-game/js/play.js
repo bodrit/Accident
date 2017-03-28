@@ -39,7 +39,11 @@ var playState = {
         this.deadSound = game.add.audio('dead');
         this.music = game.add.audio('music');
         this.music.loop = true;
-        this.music.play();
+        //this.music.play();
+
+        // animations
+        this.player.animations.add('right', [1, 2], 8, true);
+        this.player.animations.add('left', [3, 4], 8, true);
     },
 
     update: function() {
@@ -70,10 +74,14 @@ var playState = {
     movePlayer: function() {
         if (this.cursor.left.isDown) {
             this.player.body.velocity.x = -200;
+            console.log(this.player.animations);
+            this.player.animations.play('left');
         } else if (this.cursor.right.isDown) {
             this.player.body.velocity.x = 200;
+            this.player.animations.play('right');
         } else {
             this.player.body.velocity.x = 0;
+            this.player.frame = 0;
         }
 
         if (this.cursor.up.isDown && this.player.body.touching.down) {
