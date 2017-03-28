@@ -123,6 +123,16 @@ var playState = {
         this.scoreLabel.text = 'score: ' + game.global.score;
         this.updateCoinPosition();
         this.coinSound.play();
+
+        this.coin.scale.setTo(0, 0);
+        game.add.tween(this.coin.scale)
+            .to({x: 1, y: 1}, 500)
+            .start();
+
+        game.add.tween(this.player.scale)
+            .to({x: 1.3, y: 1.3}, 100)
+            .yoyo(true)
+            .start();
     },
 
     updateCoinPosition: function() {
