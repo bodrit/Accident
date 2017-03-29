@@ -52,6 +52,8 @@ var playState = {
         this.emitter.setXSpeed(-150, 150);
         this.emitter.setScale(2, 0, 2, 0, 800);
         this.emitter.gravity = 0;
+        this.emitter.width = this.player.width;
+        this.emitter.height = this.player.height;
     },
 
     update: function() {
