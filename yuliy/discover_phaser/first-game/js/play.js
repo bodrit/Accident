@@ -4,7 +4,22 @@ var playState = {
     },
 
     create: function() {
+        // input
         this.cursor = game.input.keyboard.createCursorKeys();
+
+        this.wasd = {
+            up: game.input.keyboard.addKey(Phaser.Keyboard.W),
+            left: game.input.keyboard.addKey(Phaser.Keyboard.A),
+            right: game.input.keyboard.addKey(Phaser.Keyboard.D),
+        };
+
+        // avoid browser movements
+        game.input.keyboard.addKeyCapture([
+            Phaser.Keyboard.UP,
+            Phaser.Keyboard.DOWN,
+            Phaser.Keyboard.LEFT,
+            Phaser.Keyboard.RIGHT
+        ]);
 
         // player
         this.player = game.add.sprite(game.width/2, game.height/2, 'player');
@@ -86,10 +101,10 @@ var playState = {
     },
 
     movePlayer: function() {
-        if (this.cursor.left.isDown) {
+        if (this.cursor.left.isDown || this.wasd.left.isDown) {
             this.player.body.velocity.x = -200;
             this.player.animations.play('left');
-        } else if (this.cursor.right.isDown) {
+        } else if (this.cursor.right.isDown || this.wasd.right.isDown) {
             this.player.body.velocity.x = 200;
             this.player.animations.play('right');
         } else {
@@ -97,7 +112,10 @@ var playState = {
             this.player.frame = 0;
         }
 
-        if (this.cursor.up.isDown && this.player.body.touching.down) {
+        if (
+            (this.cursor.up.isDown || this.wasd.up.isDown)
+            && this.player.body.touching.down
+        ) {
             this.player.body.velocity.y = -320;
             this.jumpSound.play();
         }
