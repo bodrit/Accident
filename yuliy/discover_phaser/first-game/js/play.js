@@ -72,6 +72,10 @@ var playState = {
             this
         );
 
+        if (!this.player.alive) {
+            return;
+        }
+
         this.movePlayer();
 
         if (!this.player.inWorld) {
