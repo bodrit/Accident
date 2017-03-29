@@ -46,6 +46,15 @@ var menuState = {
             .loop()
             .start();
 
+        // mute button
+        this.muteButton = game.add.button(
+            20, 20,
+            'mute',
+            this.toggleSound,
+            this
+        );
+        this.muteButton.frame = game.sound.mute ? 1 : 0;
+
         //
         var upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
         upKey.onDown.add(this.start, this);
@@ -53,5 +62,10 @@ var menuState = {
 
     start: function() {
         game.state.start('play');
+    },
+
+    toggleSound: function() {
+        game.sound.mute = !game.sound.mute;
+        this.muteButton.frame = game.sound.mute ? 1 : 0;
     }
 };
