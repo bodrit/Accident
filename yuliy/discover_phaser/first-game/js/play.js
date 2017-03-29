@@ -39,7 +39,7 @@ var playState = {
         this.deadSound = game.add.audio('dead');
         this.music = game.add.audio('music');
         this.music.loop = true;
-        //this.music.play();
+        this.music.play();
 
         // animations
         this.player.animations.add('right', [1, 2], 8, true);
