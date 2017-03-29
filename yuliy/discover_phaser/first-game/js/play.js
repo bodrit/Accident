@@ -136,6 +136,9 @@ var playState = {
         this.emitter.start(true, 800, null, 15);
 
         game.time.events.add(1000, this.startMenu, this);
+
+        //game.camera.flash(0xffffff, 300);
+        game.camera.shake(0.02, 300);
     },
 
     startMenu: function() {
