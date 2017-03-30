@@ -7,7 +7,7 @@ var menuState = {
         var nameLabel = game.add.text(
             game.width/2, -50,
             'Super Coin Box',
-            { font: '50px Arial', fill: '#ffffff' }
+            { font: '70px Geo', fill: '#ffffff' }
         );
         nameLabel.anchor.setTo(0.5, 0.5);
         game.add.tween(nameLabel)
