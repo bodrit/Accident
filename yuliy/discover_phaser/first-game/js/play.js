@@ -101,8 +101,13 @@ var playState = {
         }
 
         if (this.nextEnemyCreationTime < game.time.now) {
+            var start = 10000, end = 1000, score = 100;
+            var delay = Math.max(
+                start - (start - end) * game.global.score / score,
+                end
+            );
             this.addEnemy();
-            this.nextEnemyCreationTime = game.time.now + 2200;
+            this.nextEnemyCreationTime = game.time.now + delay;
         }
     },
 
