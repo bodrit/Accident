@@ -46,7 +46,8 @@ var playState = {
         this.enemies = game.add.group();
         this.enemies.enableBody = true;
         this.enemies.createMultiple(10, 'enemy');
-        game.time.events.loop(2200, this.addEnemy, this);
+        //game.time.events.loop(2200, this.addEnemy, this);
+        this.nextEnemyCreationTime = 0;
 
         // sounds
         this.jumpSound = game.add.audio('jump');
@@ -97,6 +98,11 @@ var playState = {
 
         if (!this.player.inWorld) {
             this.playerDie();
+        }
+
+        if (this.nextEnemyCreationTime < game.time.now) {
+            this.addEnemy();
+            this.nextEnemyCreationTime = game.time.now + 2200;
         }
     },
 
