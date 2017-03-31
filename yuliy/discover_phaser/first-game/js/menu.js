@@ -33,9 +33,12 @@ var menuState = {
         scoreLabel.anchor.setTo(0.5, 0.5);
 
         // start
+        var text = game.device.desktop
+            ? 'press the up arrow key to start'
+            : 'touch the screen to start';
         var startLabel = game.add.text(
             game.width/2, game.height - 80,
-            'press the up arrow key to start',
+            text,
             { font: '25px Arial', fill: '#ffffff' }
         );
         startLabel.anchor.setTo(0.5, 0.5);
@@ -56,11 +59,26 @@ var menuState = {
         this.muteButton.frame = game.sound.mute ? 1 : 0;
 
         //
-        var upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-        upKey.onDown.add(this.start, this);
+        game.input.keyboard
+            .addKey(Phaser.Keyboard.UP)
+            .onDown.add(this.start, this);
+
+        if (!game.device.desktop) {
+            game.input.onDown.add(this.start, this);
+        }
     },
 
     start: function() {
+        // ignore mute button
+        if (
+            !game.device.desktop
+            && game.input.y < 50
+            && game.input.x < 60
+        ) {
+            return;
+        }
+
+        // start the game
         game.state.start('play');
     },
 

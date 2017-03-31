@@ -13,6 +13,10 @@ var playState = {
             right: game.input.keyboard.addKey(Phaser.Keyboard.D),
         };
 
+        if (!game.device.desktop) {
+            this.addMobileInputs();
+        }
+
         // avoid browser movements
         game.input.keyboard.addKeyCapture([
             Phaser.Keyboard.UP,
@@ -112,10 +116,15 @@ var playState = {
     },
 
     movePlayer: function() {
-        if (this.cursor.left.isDown || this.wasd.left.isDown) {
+        if (game.input.totalActivePointers == 0) {
+            this.moveLeft = false;
+            this.moveRight = false;
+        }
+
+        if (this.cursor.left.isDown || this.wasd.left.isDown || this.moveLeft) {
             this.player.body.velocity.x = -200;
             this.player.animations.play('left');
-        } else if (this.cursor.right.isDown || this.wasd.right.isDown) {
+        } else if (this.cursor.right.isDown || this.wasd.right.isDown || this.moveRight) {
             this.player.body.velocity.x = 200;
             this.player.animations.play('right');
         } else {
@@ -123,13 +132,8 @@ var playState = {
             this.player.frame = 0;
         }
 
-        if (
-            (this.cursor.up.isDown || this.wasd.up.isDown)
-            //&& this.player.body.touching.down
-            && this.player.body.onFloor()
-        ) {
-            this.player.body.velocity.y = -320;
-            this.jumpSound.play();
+        if (this.cursor.up.isDown || this.wasd.up.isDown) {
+            this.jumpPlayer();
         }
     },
 
@@ -207,5 +211,56 @@ var playState = {
         enemy.body.bounce.x = 1;
         enemy.checkWorldBounds = true;
         enemy.outOfBoundsKill = true;
+    },
+
+    addMobileInputs: function() {
+        //
+        var jumpButton = game.add.sprite(350, 240, 'jumpButton');
+        jumpButton.inputEnabled = true;
+        jumpButton.alpha = 0.5;
+        jumpButton.events.onInputDown.add(this.jumpPlayer, this);
+
+        //
+        this.moveLeft = false;
+        this.moveRight = false;
+
+        var leftButton = game.add.sprite(50, 240, 'leftButton');
+        leftButton.inputEnabled = true;
+        leftButton.alpha = 0.5;
+        leftButton.events.onInputOver.add(this.setLeftTrue, this);
+        leftButton.events.onInputOut.add(this.setLeftFalse, this);
+        leftButton.events.onInputDown.add(this.setLeftTrue, this);
+        leftButton.events.onInputUp.add(this.setLeftFalse, this);
+
+        var rightButton = game.add.sprite(130, 240, 'rightButton');
+        rightButton.inputEnabled = true;
+        rightButton.alpha = 0.5;
+        rightButton.events.onInputOver.add(this.setRightTrue, this);
+        rightButton.events.onInputOut.add(this.setRightFalse, this);
+        rightButton.events.onInputDown.add(this.setRightTrue, this);
+        rightButton.events.onInputUp.add(this.setRightFalse, this);
+    },
+
+    jumpPlayer: function() {
+        if (this.player.body.onFloor()) {
+            this.player.body.velocity.y = -320;
+            this.jumpSound.play();
+        }
+    },
+
+    setLeftTrue: function() {
+        this.moveLeft = true;
+    },
+
+    setLeftFalse: function() {
+        this.moveLeft = false;
+    },
+
+    setRightTrue: function() {
+        this.moveRight = true;
+    },
+
+    setRightFalse: function() {
+        this.moveRight = false;
     }
 };
