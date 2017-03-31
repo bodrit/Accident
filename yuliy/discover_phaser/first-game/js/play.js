@@ -74,6 +74,17 @@ var playState = {
         this.emitter.gravity = 0;
         this.emitter.width = this.player.width;
         this.emitter.height = this.player.height;
+
+        // orientation
+        if (!game.device.desktop) {
+            this.rotateLabel = game.add.text(
+                game.width/2, game.height/2, '',
+                { font: '30px Arial', fill: '#ffffff', backgroundColor: '#000000'}
+            );
+            this.rotateLabel.anchor.setTo(0.5, 0.5);
+            game.scale.onOrientationChange.add(this.orientationChange, this);
+            this.orientationChange();
+        }
     },
 
     update: function() {
@@ -262,5 +273,15 @@ var playState = {
 
     setRightFalse: function() {
         this.moveRight = false;
+    },
+
+    orientationChange: function() {
+        if (game.scale.isPortrait) {
+            game.paused = true;
+            this.rotateLabel.text = 'rotate your device in landscape';
+        } else {
+            game.paused = false;
+            this.rotateLabel.text = '';
+        }
     }
 };
