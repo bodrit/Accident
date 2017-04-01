@@ -4,6 +4,10 @@ var playState = {
     },
 
     create: function() {
+        // fps
+        game.time.advancedTiming = true;
+        this.fpsLabel = game.add.text(game.width-50, 20, '0');
+
         // input
         this.cursor = game.input.keyboard.createCursorKeys();
 
@@ -88,6 +92,8 @@ var playState = {
     },
 
     update: function() {
+        this.fpsLabel.text = game.time.fps;
+
         game.physics.arcade.collide(this.player, this.layer);
         game.physics.arcade.collide(this.enemies, this.layer);
         game.physics.arcade.overlap(
