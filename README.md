@@ -14,6 +14,9 @@ This repo has been created accidentally
 
 [Thomas Palef - Discover Phaser](http://phaser.io/shop/books/discover-phaser)
 
+# How to create native app
+  * [Electron - online service that allows to create a native desktop/laptop app from HTML5 project](https://electron.atom.io)
+  * [CocoonJS - online service that allows to create a native mobile app from HTML5 project](https://cocoon.io)
+
 # Misc
 [SimCity for MS-DOS (browser version)](http://js-dos.com/games/simcity.exe.html)
-
