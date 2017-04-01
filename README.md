@@ -4,6 +4,7 @@ This repo has been created accidentally
 # Engines
 
 [Phaser](http://www.phaser.io)
+  * [Phaser editor for creation of code sprites](http://phaser.io/examples/v2/create/gen-paint)
 
 [PixiJS](http://www.pixijs.com)
 
