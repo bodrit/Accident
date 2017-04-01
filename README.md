@@ -18,5 +18,8 @@ This repo has been created accidentally
   * [Electron - online service that allows to create a native desktop/laptop app from HTML5 project](https://electron.atom.io)
   * [CocoonJS - online service that allows to create a native mobile app from HTML5 project](https://cocoon.io)
 
+# Game Art
+  * [opengameart.org](http://opengameart.org)
+
 # Misc
 [SimCity for MS-DOS (browser version)](http://js-dos.com/games/simcity.exe.html)
