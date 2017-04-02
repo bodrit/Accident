@@ -18,9 +18,10 @@ var menuState = {
             .start();
 
         //
-        game.input.keyboard
-            .addKey(Phaser.Keyboard.UP)
-            .onDown.add(this.startGame, this);
+        //game.input.keyboard
+        //    .addKey(Phaser.Keyboard.UP)
+        //    .onDown.add(this.startGame, this);
+        this.startGame();
 
         if (!game.device.desktop) {
             game.input.onDown.add(this.startGame, this);
