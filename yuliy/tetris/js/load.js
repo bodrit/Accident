@@ -18,11 +18,25 @@ var loadState = {
         game.load.setPreloadSprite(progressBar);
 
         //
-        game.load.image('tileset', 'assets/tileset.png');
-        game.load.tilemap('map', 'assets/map.json',
-            null, Phaser.Tilemap.TILED_JSON
-        );
-        console.log('loadState.preload');
+        game.load.image('enemy', 'assets/enemy.png');
+	var gf = [
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCACCCC',
+            'CCCCCAACCC',
+            'CCCCCACCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC'
+        ];
+        game.create.texture('gameField', gf, 16, 16);
     },
 
     create: function() {

@@ -1,8 +1,6 @@
 
 var playState = {
     preload: function() {
-        //
-        console.log('playState.preload');
     },
 
     create: function() {
@@ -15,7 +13,6 @@ var playState = {
 
         //
         this.createWorld();
-        console.log('playState.create');
     },
 
     update: function() {
@@ -23,10 +20,28 @@ var playState = {
     },
 
     createWorld: function() {
-        this.map = game.add.tilemap('map');
-        this.map.addTilesetImage('tileset');
-        this.layer = this.map.createLayer('Tile Layer 1');
-        this.layer.resizeWorld();
-        console.log(this.layer);
+        /*
+	var gf = [
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCACCCC',
+            'CCCCCAACCC',
+            'CCCCCACCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC',
+            'CCCCCCCCCC'
+        ];
+        game.create.texture('gameField', gf, 16, 16);
+        this.gameField = game.add.sprite(10, 10, 'gameField');
+        */
+        var t = game.create.texture('gameField', gf, 16, 16);
+        this.gameField = game.add.sprite(10, 10, t);
     }
 };
