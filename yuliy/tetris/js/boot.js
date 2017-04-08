@@ -1,25 +1,25 @@
 
 var bootState = {
     preload: function() {
-        game.load.image('progressBar', 'assets/progressBar.png');
+        app.game.load.image('progressBar', 'assets/progressBar.png');
     },
 
     create: function() {
-        game.stage.backgroundColor = '#000000';
-        game.renderer.renderSession.roundPixels = true;
+        app.game.stage.backgroundColor = '#000000';
+        app.game.renderer.renderSession.roundPixels = true;
 
-        if (!game.device.desktop) {
-            game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-            game.scale.setMinMax(
-                game.width/2, game.height/2,
-                game.width*2, game.height*2
+        if (!app.game.device.desktop) {
+            app.game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+            app.game.scale.setMinMax(
+                app.game.width/2, app.game.height/2,
+                app.game.width*2, app.game.height*2
             );
-            game.scale.pageAlignHorizontally = true;
-            game.scale.pageAlignVertically = true;
+            app.game.scale.pageAlignHorizontally = true;
+            app.game.scale.pageAlignVertically = true;
 
             document.body.style.backgroundColor = '#000000';
         }
 
-        game.state.start('load');
+        app.game.state.start('load');
     }
 };

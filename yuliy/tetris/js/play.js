@@ -5,17 +5,17 @@ var playState = {
 
     create: function() {
         // fps
-        game.time.advancedTiming = true;
-        this.fpsLabel = game.add.text(
-            game.width-50, 20, '0',
+        app.game.time.advancedTiming = true;
+        this.fpsLabel = app.game.add.text(
+            app.game.width-50, 20, '0',
             {font: '12px Monaco', fill: '#ffffff'}
         );
 
         //
-        graphicsEngine.startEngine();
+        app.graphicsEngine.startEngine();
     },
 
     update: function() {
-        this.fpsLabel.text = game.time.fps;
+        this.fpsLabel.text = app.game.time.fps;
     }
 };

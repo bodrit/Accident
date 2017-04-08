@@ -6,7 +6,7 @@ function GraphicsEngine() {
 
     this.preloadResources = function() {
 
-        game.load.spritesheet(
+        app.game.load.spritesheet(
             'tileset', 'assets/tileset.png',
             this.tileSize.x, this.tileSize.y
         );
@@ -18,7 +18,7 @@ function GraphicsEngine() {
         for (var i = 0; i != this.fieldSize.y; ++i) {
             var line = [];
             for (var j = 0; j != this.fieldSize.x; ++j) {
-                var cell = game.add.sprite(
+                var cell = app.game.add.sprite(
                     this.fieldPosition.x + this.tileSize.x * j,
                     this.fieldPosition.y + this.tileSize.y * i,
                     'tileset'
