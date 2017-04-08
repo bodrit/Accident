@@ -18,25 +18,7 @@ var loadState = {
         game.load.setPreloadSprite(progressBar);
 
         //
-        game.load.image('enemy', 'assets/enemy.png');
-	var gf = [
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCACCCC',
-            'CCCCCAACCC',
-            'CCCCCACCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC'
-        ];
-        game.create.texture('gameField', gf, 16, 16);
+        graphicsEngine.preloadResources();
     },
 
     create: function() {

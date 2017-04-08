@@ -12,36 +12,10 @@ var playState = {
         );
 
         //
-        this.createWorld();
+        graphicsEngine.startEngine();
     },
 
     update: function() {
         this.fpsLabel.text = game.time.fps;
-    },
-
-    createWorld: function() {
-	var gf = [
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCACCCC',
-            'CCCCCAACCC',
-            'CCCCCACCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC',
-            'CCCCCCCCCC'
-        ];
-        /*
-        game.create.texture('gameField', gf, 16, 16);
-        this.gameField = game.add.sprite(10, 10, 'gameField');
-        */
-        var t = game.create.texture('gameField', gf, 16, 16);
-        this.gameField = game.add.sprite(10, 10, t);
     }
 };
