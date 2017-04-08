@@ -1,11 +1,14 @@
 
-function GraphicsEngine() {
+function GraphicsEngine(
+    tileSize,
+    fieldSize,
+    fieldPosition
+) {
     this.tileSize = {x: 20, y: 20};
     this.fieldSize = {x: 10, y: 20};
     this.fieldPosition = {x: 50, y: 50};
 
     this.preloadResources = function() {
-
         app.game.load.spritesheet(
             'tileset', 'assets/tileset.png',
             this.tileSize.x, this.tileSize.y
@@ -27,6 +30,15 @@ function GraphicsEngine() {
                 line.push(cell);
             }
             this.field.push(line);
+        }
+    }
+
+    this.updateField = function(fieldData) {
+        for (var i = 0; i != this.fieldSize.y; ++i) {
+            for (var j = 0; j != this.fieldSize.x; ++j) {
+                //this.field[i][j].frame = fieldContent[i][j];
+                this.field[i][j].frame = app.game.rnd.pick([0, 1]);
+            }
         }
     }
 }

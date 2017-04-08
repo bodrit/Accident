@@ -17,5 +17,6 @@ var playState = {
 
     update: function() {
         this.fpsLabel.text = app.game.time.fps;
+        //app.graphicsEngine.updateField();
     }
 };
