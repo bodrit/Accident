@@ -20,7 +20,6 @@ var playState = {
     },
 
     createWorld: function() {
-        /*
 	var gf = [
             'CCCCCCCCCC',
             'CCCCCCCCCC',
@@ -38,6 +37,7 @@ var playState = {
             'CCCCCCCCCC',
             'CCCCCCCCCC'
         ];
+        /*
         game.create.texture('gameField', gf, 16, 16);
         this.gameField = game.add.sprite(10, 10, 'gameField');
         */
