@@ -10,7 +10,7 @@ function GraphicsEngine(
 
     this.preloadResources = function() {
         app.game.load.spritesheet(
-            'tileset', 'assets/tileset.png',
+            'brick', 'assets/brick.png',
             this.tileSize.x, this.tileSize.y
         );
     };
@@ -24,7 +24,7 @@ function GraphicsEngine(
                 var cell = app.game.add.sprite(
                     this.fieldPosition.x + this.tileSize.x * j,
                     this.fieldPosition.y + this.tileSize.y * i,
-                    'tileset'
+                    'brick'
                 );
                 cell.frame = 0;
                 line.push(cell);
