@@ -18,7 +18,7 @@ var loadState = {
         app.game.load.setPreloadSprite(progressBar);
 
         //
-        app.graphicsEngine.preloadResources();
+        app.graphicsEngine.onPreload();
     },
 
     create: function() {

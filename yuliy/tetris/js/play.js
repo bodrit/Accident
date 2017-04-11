@@ -12,11 +12,11 @@ var playState = {
         );
 
         //
-        app.graphicsEngine.startEngine();
+        app.graphicsEngine.onCreate();
     },
 
     update: function() {
         this.fpsLabel.text = app.game.time.fps;
-        //app.graphicsEngine.updateField();
+        app.graphicsEngine.updateField();
     }
 };
